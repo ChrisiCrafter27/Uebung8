@@ -9,10 +9,9 @@ public class Bruch {
     }
 
     private int ggt(int x, int y) {
-        int sign = y < 0 ? -1 : 1;
         int a = Math.max(Math.abs(x), Math.abs(y));
         int b = Math.min(Math.abs(x), Math.abs(y));
-        if(b == 0) return Math.max(a, 1) * sign;
+        if(b == 0) return Math.max(a, 1);
         int rA = a;
         int rB = b;
         int rC;
@@ -22,13 +21,14 @@ public class Bruch {
             rA = rB;
             rB = rC;
         }
-        return rB * sign;
+        return rB;
     }
 
     public void shorten() {
         int ggt = ggt(zaehler, nenner);
-        zaehler /= ggt;
-        nenner /= ggt;
+        int sign = nenner < 0 ? -1 : 1;
+        zaehler /= ggt * sign;
+        nenner /= ggt * sign;
     }
 
     public boolean hasSameValueAs(Bruch b) {
