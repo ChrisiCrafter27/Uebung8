@@ -12,6 +12,7 @@ public class Bruch {
         int sign = y < 0 ? -1 : 1;
         int a = Math.max(Math.abs(x), Math.abs(y));
         int b = Math.min(Math.abs(x), Math.abs(y));
+        if(b == 0) return Math.max(a, 1) * sign;
         int rA = a;
         int rB = b;
         int rC;
@@ -31,9 +32,7 @@ public class Bruch {
     }
 
     public boolean hasSameValueAs(Bruch b) {
-        b.shorten();
-        shorten();
-        return zaehler == b.zaehler && nenner == b.nenner;
+        return zaehler * b.nenner == nenner * b.zaehler;
     }
 
     @Override
